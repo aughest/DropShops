@@ -2,7 +2,7 @@
 
 @section('container')
 
-    <h3 class="mt-3 mb-3">Category</h3>
+    <h3 class="mt-3 mb-3">Categoryy</h3>
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
         @foreach ($categories as $category)
         <div class="col mb-5">
