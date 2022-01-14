@@ -37,7 +37,7 @@
         @endforeach
         {{-- <form action="/checkout" method="POST"> --}}
             {{-- <input type="hidden" name="quantity" value="{{ $cart->id }}"> --}}
-            <a href="/cart/checkout" class="btn text-light" style="background-color: #00A19D">Buy</a>
+            <a href="/cart/checkout" class="btn text-light" style="background-color: #00A19D">Order</a>
         {{-- </form> --}}
         @else
             <p>Cart is empty..</p>

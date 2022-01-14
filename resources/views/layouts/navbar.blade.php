@@ -20,6 +20,7 @@
                 Admin
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="/add-shop">Add Shop</a></li>
                 <li><a class="dropdown-item" href="/add-product">Add Product</a></li>
                 <li><a class="dropdown-item" href="/all-transaction">All Transaction</a></li>
                 <li><hr class="dropdown-divider"></li>
@@ -44,8 +45,8 @@
           @endif
         </ul>
         <form class="d-flex" action="/search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
-          <button class="btn btn-outline-success btn-light" type="submit">Search</button>
+          <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search" >
+          <button class="btn btn-outline-success btn-light" type="submit" style="margin-left: -10px"><i class="bi bi-search"></i></button>
         </form>
       </div>
     </div>

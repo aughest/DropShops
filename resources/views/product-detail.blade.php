@@ -49,7 +49,7 @@
                         @error('quantity')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-                        <button type="submit" class="btn text-light" style="background-color: #00A19D">Add To Cart</button>
+                        <button type="submit" class="btn text-light" style="background-color: #00A19D">Buy</button>
                         <!-- Button trigger modal -->
                         {{-- <button type="submit" class="btn mt-2 text-light" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #00A19D">
                             Add To Cart

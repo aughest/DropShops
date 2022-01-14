@@ -39,6 +39,8 @@ Route::get('/search', [HomeController::class, 'search']);
 Route::get('/shop/{name}', [ShopController::class, 'show']);
 
 //admin
+Route::get('/add-shop', function () { return view('admin.add-shop');})->middleware('admin');
+Route::post('/add-shop', [ShopController::class, 'store']);
 Route::get('/add-product', [ProductController::class, 'create'])->middleware('admin');
 Route::post('/add-product', [ProductController::class, 'store']);
 Route::delete('/admin/product/{id}/delete', [ProductController::class, 'destroy']);
@@ -52,15 +54,12 @@ Route::post('/addCart', [CartController::class, 'store']);
 Route::post('/updateCart', [CartController::class, 'update']);
 Route::delete('/deleteCart/{id}', [CartController::class, 'destroy']);
 Route::get('/cart/checkout', [CheckoutController::class, 'index'])->middleware('login');
-Route::get('/transaction-detail/{id}', [TransactionController::class, 'show'])->middleware('login');
+Route::get('/transaction-detail/{id}', [TransactionController::class, 'show'])->middleware('auth');
 Route::get('/profile', function () { return view('user.profile');})->middleware('login');
+Route::put('/updateProfile', [AuthController::class, 'updateProfile'])->middleware('login');
 
 Route::get('/transaction-history', [TransactionController::class, 'index'])->middleware('login');
 Route::post('/buying', [TransactionController::class, 'store']);
 
 Route::get('/change-password', function () { return view('user.change-password');})->middleware('login');
 Route::post('/change-password', [AuthController::class, 'changePassword']);
-
-// Route::get('/', function () {
-//     return view('home');
-// });

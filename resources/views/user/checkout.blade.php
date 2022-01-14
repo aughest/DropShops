@@ -61,16 +61,15 @@
                         <label for="paymentMethod" class="form-label">Payment Method</label>
                         <select class="form-select @error('paymentMethod') is-invalid @enderror" name="paymentMethod">
                             <option selected value="">Choose Payment Method</option>
-                            <option value="Virtual Account">Virtual Account</option>
                             <option value="E-Wallet">E-Wallet</option>
-                            <option value="Transfer">Transfer</option>
+                            <option value="Transfer">Debit/Credit</option>
                         </select>
                         @error('paymentMethod')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
-                <button class="w-100 btn btn-lg mt-3 text-light" style="background-color: #00A19D" type="submit">Buy</button>
+                <button class="w-100 btn btn-lg mt-3 text-light" style="background-color: #00A19D" type="submit">Checkout</button>
             </form>
         </main>
     </div>

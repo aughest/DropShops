@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
@@ -31,32 +32,50 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        // dd($request);
         $credential = $request->validate([
+            'fullName' => 'required|min:1',
             'username' => 'required|min:5',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8',
             'confirmPassword' => 'required|same:password',
             'term' => 'required'
         ]);
-        
-        // if ($request->password != $request->confirmPassword) {
-        //     return redirect()->back()->withErrors("Confirm Password does not match with the password.");
-        // }
 
         $user = new User();
+        $user->full_name = $request->fullName;
         $user->username = $request->username;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->address = "";
         $user->phoneNumber = "";
         $user->image = "";
-        // $user->gender = $request->gender;
-        // $user->dob = $request->dob;
         $user->role = 'user';
         $user->save();
 
         return redirect('/login');
+    }
+
+    public function updateProfile(Request $request)
+    {   
+        $data = $request->validate([
+            'full_name' => 'required',
+            'username' => 'required|min:4',
+            'email' => 'required|email',
+            'phoneNumber' => 'required'
+        ]);
+
+        if($request->file('image')){
+            
+            $file = $request->file('image');
+
+            $imageName = time().'_'.$file->getClientOriginalName();
+            $validatedData['image'] = $imageName;
+            Storage::putFileAs('public/images', $file, $imageName);
+        }
+
+        User::where('id', '=', Auth::id())->update($data);
+
+        return redirect('/profile');
     }
 
     public function changePassword(Request $request)
@@ -72,10 +91,6 @@ class AuthController extends Controller
             'newPassword' => 'required|min:8',
             'newConfirmPassword' => 'required|same:newPassword'
         ]);
-
-        // if ($request->newPassword != $request->newConfirmPassword) {
-        //     return redirect()->back()->with("error","New Confirm Password does not match with the New password.");
-        // }
 
         $password['password'] = Hash::make($request->newPassword);
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,9 +18,7 @@ class ProductController extends Controller
     public function index($name)
     {
         $category = Category::firstWhere('name','like',$name);
-        
         $products = Product::where('category_id','=',$category->id)->get();
-        // dd($products);
 
         return view('products',[
             'products' => $products
@@ -34,7 +33,8 @@ class ProductController extends Controller
     public function create()
     {
         return view('admin.add-product',[
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'shops' => Shop::all()
         ]);
     }
 
@@ -48,6 +48,7 @@ class ProductController extends Controller
     {
         $validatedData = $request->validate([
             'category' => 'required',
+            'shop' => 'required',
             'name' => 'required|unique:products|min:5',
             'price' => 'required|min:0',
             'description' => 'required|min:20',
@@ -56,10 +57,11 @@ class ProductController extends Controller
 
         $file = $request->file('image');
         $imageName = time().'_'.$file->getClientOriginalName();
-        Storage::putFileAs('public/images', $file, $imageName);
+        Storage::putFileAs('public/images/Product/', $file, $imageName);
 
         $product = new Product();
         $product->category_id = $request->category;
+        $product->shop_id = $request->shop;
         $product->name = $request->name;
         $product->price = $request->price;
         $product->description = $request->description;

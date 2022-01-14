@@ -89,12 +89,18 @@
                                 <form method="POST" action="/register">
                                     @csrf
                                     <div class="form-outline mb-3">
+                                        <input type="fullName" id="fullName" name="fullName" class="form-control py-2 @error('fullName') is-invalid @enderror" placeholder="Full Name" value="{{ old('fullName') }}"/>
+                                        @error('fullName')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-outline mb-3">
                                         <input type="username" id="username" name="username" class="form-control py-2 @error('username') is-invalid @enderror" placeholder="Username" value="{{ old('username') }}"/>
                                         @error('username')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
-
+                                    
                                     <div class="form-outline mb-3">
                                         <input type="email" id="email" name="email" class="form-control py-2 @error('email') is-invalid @enderror" placeholder="Email" value="{{ old('email') }}"/>
                                         @error('email')

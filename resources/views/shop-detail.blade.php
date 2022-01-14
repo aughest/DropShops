@@ -7,7 +7,7 @@
       <div class="col-sm-2 col-md-2">
           <img src="{{asset('storage/images/Shop/'.$products[0]->shop->image)}}" class="img-fluid rounded-circle" width="100px">
       </div>
-      <div class="col m-auto" style="color: black">
+      <div class="col m-auto border-end" style="color: black">
           <h4 style="margin-bottom: 10px"><i class="bi bi-bag-check"></i> {{ $products[0]->shop->name }}</h4>
           <p style="font-size: 16px; margin-bottom: 0"><i class="bi bi-geo-alt"></i> {{ $products[0]->shop->location }}</p>
       </div>
@@ -18,7 +18,7 @@
   </div>
 
   <h4 class="mt-3 mb-3">All Products</h4>
-  <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
+  <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-4 row-cols-xl-6">
       @if (count($products) > 0)
           @foreach ($products as $product)
           <div class="col mb-5">
@@ -26,8 +26,8 @@
                   <a href="/products/{{ $product->category->name }}/{{ $product->name }}/detail" class="text-decoration-none text-dark">
                       <img src="{{ asset('storage/images/Product/'.$product->image) }}" class="card-img-top">
                       <div class="card-body">
-                          <h5 class="card-title text-dark">{{ $product->name }}</h5>
-                          <p>Rp.{{ $product->price }}</p>                               
+                          <p class="card-title text-dark">{{ $product->name }}</p>
+                          <h5>Rp.{{ $product->price }}</h5>                               
                       </div>
                   </a>
                   @if (Auth::check() && Auth::user()->role == 'admin')

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ShopController extends Controller
 {
@@ -25,7 +26,10 @@ class ShopController extends Controller
      */
     public function create()
     {
-        //
+        // return view('admin.add-product',[
+        //     'categories' => Category::all(),
+        //     'shops' => Shop::all()
+        // ]);
     }
 
     /**
@@ -36,7 +40,25 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|unique:shops|min:5',
+            'description' => 'required|min:20|max:255',
+            'location' => 'required',
+            'image' => 'required'
+        ]);
+
+        $file = $request->file('image');
+        $imageName = time().'_'.$file->getClientOriginalName();
+        Storage::putFileAs('public/images/Shop/', $file, $imageName);
+
+        $shop = new Shop();
+        $shop->name = $request->name;
+        $shop->description = $request->description;
+        $shop->location = $request->location;
+        $shop->image = $imageName;
+
+        $shop->save();
+        return redirect()->back();
     }
 
     /**

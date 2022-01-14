@@ -12,10 +12,22 @@
                 <select class="form-select @error('category') is-invalid @enderror" name="category">
                     <option value="" selected>Choose a Category!</option>
                     @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        <option value="{{ $category->id }}"  {{ old('category') == $category->id ? ' selected' : '' }}>{{ $category->name }}</option>
                     @endforeach
                 </select>
-                @error('description')
+                @error('category')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="shop" class="form-label">Shop</label>
+                <select class="form-select @error('shop') is-invalid @enderror" name="shop">
+                    <option value="" selected>Choose a Shop!</option>
+                    @foreach ($shops as $shop)
+                        <option value="{{ $shop->id }}"  {{ old('shop') == $shop->id ? ' selected' : '' }}>{{ $shop->name }}</option>
+                    @endforeach
+                </select>
+                @error('shop')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
@@ -28,14 +40,15 @@
             </div>
             <div class="mb-3">
                 <label for="inputPrice" class="form-label">Price</label>
-                <input type="number" class="form-control @error('price') is-invalid @enderror" id="inputPrice" name="price" value="{{ old('price') }}"  min="0">
+                <input type="number" class="form-control @error('price') is-invalid @enderror" id="inputPrice" name="price" value="{{ old('price') }}" min="0">
                 @error('price')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
             <div class="mb-3">
                 <label for="inputDescription" class="form-label">Description</label>
-                <input class="form-control @error('description') is-invalid @enderror" id="inputDescription" rows="3" name="description" value="{{ old('description') }}">
+                {{-- <input class="form-control @error('description') is-invalid @enderror" id="inputDescription" rows="3" name="description" value="{{ old('description') }}"> --}}
+                <textarea class="form-control @error('description') is-invalid @enderror" id="inputDescription" rows="3" name="description">{{ old('description') }}</textarea>
                 @error('description')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

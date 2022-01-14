@@ -19,7 +19,7 @@
     
     <div class="container" style="padding-bottom: 10rem;">
         <div class="row justify-content-center">
-            <div class="col-md-10 py-5">
+            <div class="col-md-12 py-5">
                 @yield('container')
             </div>
         </div>

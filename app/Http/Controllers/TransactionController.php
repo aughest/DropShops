@@ -20,7 +20,7 @@ class TransactionController extends Controller
     public function index()
     {
         if(Auth::user()->role == 'admin'){
-            $transactions = Transaction::all();
+            $transactions = Transaction::latest()->get();
 
             return view('admin.all-transaction',[
                 'transactions' => $transactions

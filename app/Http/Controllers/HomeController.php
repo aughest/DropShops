@@ -11,8 +11,7 @@ class HomeController extends Controller
     public function viewCategory(){
      
         $categories = Category::all();
-        $products = Product::latest()->get();
-        // dd($products);
+        $products = Product::latest()->take(12)->get();
 
         return view('home', [
             'categories' => $categories,
@@ -22,19 +21,13 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
-        // $category = Category::firstWhere('name', $request->name);
-        // dd($request->search);
-
         if(!$request->search == null){
-            $products = Product::where('name','LIKE', "%$request->search%")->get();
-            // dd($products);
+            $products = Product::inRandomOrder()->where('name','LIKE', "%$request->search%")->get();
         }else{
-            $products = Product::all();
+            $products = Product::inRandomOrder()->get();
         }
 
         return view('products', [
-            // 'categories' => Category::all(),
-            // 'category' => $category,
             'products' => $products
         ]);
     }
