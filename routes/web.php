@@ -63,3 +63,7 @@ Route::post('/buying', [TransactionController::class, 'store']);
 
 Route::get('/change-password', function () { return view('user.change-password');})->middleware('login');
 Route::post('/change-password', [AuthController::class, 'changePassword']);
+
+Route::get('/create-symbolic', function () {
+  symlink(storage_path('/app/public'), public_path('storage'));
+});
