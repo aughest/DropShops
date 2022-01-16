@@ -120,13 +120,13 @@ class ProductController extends Controller
         $validatedData = $request->validate($check);
 
         if($request->file('newImage')){
-            Storage::delete('public/images/'.$request->oldImage);
+            Storage::delete('public/images/Product/'.$request->oldImage);
             
             $file = $request->file('newImage');
 
             $imageName = time().'_'.$file->getClientOriginalName();
             $validatedData['image'] = $imageName;
-            Storage::putFileAs('public/images', $file, $imageName);
+            Storage::putFileAs('public/images/Product', $file, $imageName);
         }
 
         Product::where('id', '=', $id)->update($validatedData);

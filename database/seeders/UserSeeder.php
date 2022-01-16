@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('admin'), 
                 'address' => '-',
                 'phoneNumber' => '-',
-                'image' => 'profile-photo.png',
+                'image' => '',
                 'role' => 'admin'
             ],
             [
@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('user'), 
                 'address' => 'HI',
                 'phoneNumber' => '62139123822',
-                'image' => 'profile-photo.png',
+                'image' => '',
                 'role' => 'user'
                 ]
         ];

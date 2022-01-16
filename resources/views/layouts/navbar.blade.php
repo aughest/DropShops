@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #00A19D">
+<nav class="navbar navbar-expand-lg navbar-dark mb-5" style="background-color: #00A19D">
     <div class="container-fluid mx-5">
       <a class="navbar-brand" href="/"><img src="/img/Dropshops-logo-nav.png" style="height: 50px"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

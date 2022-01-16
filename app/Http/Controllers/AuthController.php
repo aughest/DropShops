@@ -65,17 +65,18 @@ class AuthController extends Controller
         ]);
 
         if($request->file('image')){
+            Storage::delete('public/images/Profile/'.$request->oldImage);
             
             $file = $request->file('image');
 
             $imageName = time().'_'.$file->getClientOriginalName();
-            $validatedData['image'] = $imageName;
-            Storage::putFileAs('public/images', $file, $imageName);
+            $data['image'] = $imageName;
+            Storage::putFileAs('public/images/Profile', $file, $imageName);
         }
 
         User::where('id', '=', Auth::id())->update($data);
 
-        return redirect('/profile');
+        return redirect('/profile')->with('success', 'Profile has been updated!');
     }
 
     public function changePassword(Request $request)

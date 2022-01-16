@@ -2,10 +2,10 @@
 
 @section('container')
     
-  <h1 class="text-center my-5">Detail Transaksi</h1>
+  <h1 class="text-center my-5">Transaction Detail</h1>
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <p>status <strong>Success</strong></p>
+      <p>Status <strong>Success</strong></p>
       <p>Transaction date <strong>{{ date('d M Y H:i', strtotime($transaction->created_at)); }} WIB</strong> </p>
 
       <h4 class="mt-3">Recepient</h4>
@@ -64,13 +64,13 @@
               <tr>
                 <th><img src="{{asset('storage/images/Product/'.$transaction_detail->product->image)}}" style="width: 200px"></th>
                 <td>{{ $transaction_detail->product->name }}</td>
-                <td>$ {{ $transaction_detail->subtotal }}</td>
+                <td>Rp{{ $transaction_detail->subtotal }}</td>
                 <td>{{ $transaction_detail->quantity }}</td>
               </tr>
             </tbody>
         @endforeach    
       </table>
-      <p class="text-end">Total Price : <strong>$ {{ $total }}</strong></p>
+      <p class="text-end">Total Price : <strong>Rp{{ $total }}</strong></p>
     </div>
   </div>
 

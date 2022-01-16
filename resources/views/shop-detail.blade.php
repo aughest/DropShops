@@ -18,7 +18,7 @@
   </div>
 
   <h4 class="mt-3 mb-3">All Products</h4>
-  <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-4 row-cols-xl-6">
+  <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-5">
       @if (count($products) > 0)
           @foreach ($products as $product)
           <div class="col mb-5">

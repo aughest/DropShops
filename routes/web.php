@@ -50,7 +50,7 @@ Route::get('/all-transaction', [TransactionController::class, 'index'])->middlew
 
 // user
 Route::get('/cart', [CartController::class, 'index'])->middleware('login');
-Route::post('/addCart', [CartController::class, 'store']);
+Route::post('/addCart', [CartController::class, 'store'])->middleware('login');
 Route::post('/updateCart', [CartController::class, 'update']);
 Route::delete('/deleteCart/{id}', [CartController::class, 'destroy']);
 Route::get('/cart/checkout', [CheckoutController::class, 'index'])->middleware('login');

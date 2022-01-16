@@ -2,20 +2,28 @@
 
 @section('container')
 
-<div class="container rounded bg-white">
-  <form action="/updateProfile" method="POST">
+
+  
+  <form action="/updateProfile" method="POST" enctype="multipart/form-data">
+    <div class="row justify-content-center mb-3">
+      @if (session()->has('success'))
+        <div class="alert alert-success col-lg-8" role="alert">
+          {{ session('success') }}
+        </div>
+      @endif
+    </div>
     @csrf
     @method('put')
     <div class="row justify-content-center">
-      <div class="col-md-2 border-right">
+      <div class="col-md-2 border-right mb-3">
         <div class="d-flex flex-column align-items-center text-center">
-          {{-- <img class="rounded-circle mt-5" width="150px" src="{{ asset('storage/images/Profile/'.Auth::user()->image) }}"> --}}
-          @if (Auth::user()->image)
-            <img class="rounded-circle mt-5" width="150px" src="{{ asset('storage/images/Profile/'.Auth::user()->image) }}">
+          @if (Auth::user()->image != "")
+            <img class="img-preview img-fluid rounded-circle mb-3 col-sm-12" width="150px" src="{{ asset('storage/images/Profile/'.Auth::user()->image) }}">
           @else
-            <img class="img-preview img-fluid rounded-circle mb-3 col-sm-12"> 
+            <img class="img-preview img-fluid rounded-circle mb-3 col-sm-12" src="{{ asset('storage/images/Profile/profile-photo.png') }}"> 
           @endif
-          <div class="mb-3">
+          <div class="my-3">
+            <input type="hidden" name="oldImage" value="{{ Auth::user()->image }}">
             <input class="form-control  @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">
           </div>
           <span class="font-weight-bold">{{ Auth::user()->username }}</span><span class="text-black-50">{{ Auth::user()->email }}</span><span> </span>
@@ -23,7 +31,7 @@
         </div>
       </div>
       <div class="col-md-5 border-right">
-        <div class="p-3 py-5">
+        <div class="">
           <div class="d-flex justify-content-between align-items-center mb-3">
             <h4 class="text-right">Profile</h4>
           </div>
@@ -69,7 +77,6 @@
       </div>
     </div>
   </form>
-</div>
     
 <script>
   function previewImage(){

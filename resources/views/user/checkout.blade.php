@@ -10,7 +10,7 @@
                 @csrf
                 <h4>Shipping</h4>
                 <div class="bg-dark my-2" style="height: 1px"></div>
-                <h5>Recepient</h5>
+                <h5>Recipient</h5>
 
                 <div class="row gx-5 mb-2">
                     <div class="col">
@@ -47,12 +47,12 @@
                         <div class="col-md-6">
                             <h4>{{ $cart->products[0]->name }}</h4>
                             <p>{{ $cart->quantity }} item(s)</p>
-                            <p>Rp.{{ $cart->subtotal }}</p>
+                            <p>Rp{{ $cart->subtotal }}</p>
                         </div>
                     </div>
                     <div class="my-2" style="height: 1px; background-color: rgb(189, 189, 189)"></div>
                 @endforeach
-                <p class="text-end">Total Price : <strong>$ {{ $total }}</strong></p>
+                <p class="text-end">Total Price : <strong>Rp{{ $total }}</strong></p>
 
                 <h4 class="mt-5">Payment</h4>
                 <div class="bg-dark my-2" style="height: 1px"></div>
