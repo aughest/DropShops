@@ -35,7 +35,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <button type="submit" class="btn text-light" style="background-color: #00A19D">Add Product</button>
+            <button type="submit" class="btn text-light" style="background-color: #00A19D">Add Shop</button>
         </form>        
     </div>
 

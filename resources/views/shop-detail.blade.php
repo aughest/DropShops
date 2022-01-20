@@ -27,7 +27,7 @@
                       <img src="{{ asset('storage/images/Product/'.$product->image) }}" class="card-img-top">
                       <div class="card-body">
                           <p class="card-title text-dark">{{ $product->name }}</p>
-                          <h5>Rp.{{ $product->price }}</h5>                               
+                          <h5>Rp{{ number_format($product->price, 0, '.', '.') }}</h5>                               
                       </div>
                   </a>
                   @if (Auth::check() && Auth::user()->role == 'admin')
